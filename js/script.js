@@ -72,14 +72,14 @@ function edit() {
         document.getElementById("ename").style.display = "none";
     }
 
-    if (dob === "" || get_age(dob) < 18) {
-        document.getElementById("dob").style.border = "4px solid #ff3333";
-        document.getElementById("edob").style.display = "inline-block";
-        error = true;
-    } else {
-        document.getElementById("dob").style.border = "4px solid rgb(21, 221, 21)";
-        document.getElementById("edob").style.display = "none";
-    }
+    // if (dob === "" || get_age(dob) < 18) {
+    //     document.getElementById("dob").style.border = "4px solid #ff3333";
+    //     document.getElementById("edob").style.display = "inline-block";
+    //     error = true;
+    // } else {
+    //     document.getElementById("dob").style.border = "4px solid rgb(21, 221, 21)";
+    //     document.getElementById("edob").style.display = "none";
+    // }
 
     if (gpa === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(gpa)) || (to_float(gpa) > 4.0 || to_float(gpa) < 0.0)) {
         document.getElementById("gpa").style.border = "4px solid #ff3333";
@@ -149,6 +149,10 @@ function edit() {
     }
 }
 
+function delete_request() {
+    window.confirm("Are you sure that you want to delete this student?");
+}
+
 function register(){
     error = false
 
@@ -183,14 +187,14 @@ function register(){
         document.getElementById("ename").style.display = "none";
     }
 
-    if (dob === "" || get_age(dob) < 18) {
-        document.getElementById("dob").style.border = "4px solid #ff3333";
-        document.getElementById("edob").style.display = "inline-block";
-        error = true;
-    } else {
-        document.getElementById("dob").style.border = "4px solid rgb(21, 221, 21)";
-        document.getElementById("edob").style.display = "none";
-    }
+    // if (dob === "" || get_age(dob) < 18) {
+    //     document.getElementById("dob").style.border = "4px solid #ff3333";
+    //     document.getElementById("edob").style.display = "inline-block";
+    //     error = true;
+    // } else {
+    //     document.getElementById("dob").style.border = "4px solid rgb(21, 221, 21)";
+    //     document.getElementById("edob").style.display = "none";
+    // }
 
     if (gpa === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(gpa)) || (to_float(gpa) > 4.0 || to_float(gpa) < 0.0)) {
         document.getElementById("gpa").style.border = "4px solid #ff3333";
@@ -255,7 +259,7 @@ function register(){
         document.getElementById("elv").style.display = "none";
     }
     
-    if(dept !== "" && !is_lv_valid && to_float(lv) < 3){
+    if(dept !== "Choose Department" && !is_lv_valid && to_float(lv) < 3){
         document.getElementById("spdropdown").style.border = "4px solid #ff3333";
         document.getElementById("edept").style.display = "inline-block";
         error = true;
