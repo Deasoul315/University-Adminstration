@@ -17,6 +17,63 @@ html, body{
     margin: 0;
 }
 
+
+h1.nav-title {
+    color: #8bc0e6;
+    margin: 0px;
+    font-size: 26px;
+    margin: 4px 0px;
+}
+
+.index-body .nav-bar-left li{
+    padding: 0px;
+    pointer-events: none;
+}
+
+.col-50 {
+    width: 50%;
+    margin: auto;
+}
+
+.index-container {
+    margin-top: 10%;
+}
+
+.card {
+    background-color: #81ddff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    padding: 20px;
+}
+
+.card.index-card h1{
+    color:#161858;
+    text-align: center;
+}
+
+.card.index-card button{
+    display: block;
+    margin: 5px auto 5px;
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(21, 221, 21);
+    border: 0px;
+    transition: background-color 1s;
+    cursor: pointer;
+}
+
+.card.index-card button:hover {
+    background-color: rgb(8, 81, 8);
+}
+
+.card.index-card button a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font: bold;
+}
+
 .nav-bar-right li {
     float: right;
 }
@@ -349,6 +406,8 @@ th, td {
     text-align: center;
     border-radius: 50%;
     transition: background-color 1s;
+    margin: 0px 3px;
+    vertical-align: middle;
 }
 
 .error:hover{

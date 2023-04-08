@@ -29,14 +29,14 @@
                 <div class="row">
                     <div class="col-left-50">
                         <h1>Student Information</h1>
-                            <div class="label"><h2>ID           </h2></div><input type="text" placeholder="ID" id="id"><div class="error" id="eid" onclick="error_message('ID must be provided')">&#33</div><br>
-                            <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Name" id="name"><div class="error" id="ename" onclick="error_message('Name must be provided')">&#33</div><br>
-                            <div class="label"><h2>Date of Birth</h2></div><input type="date" placeholder="Date of Birth" id="dob"><div class="error" id="edob"  onclick="error_message('Date of Birth must be provided')">&#33</div><br>
-                            <div class="label"><h2>GPA          </h2></div><input type="number"  placeholder="GPA" step="0.1" min="0.0" max="4.0" id="gpa"><div class="error" id="egpa"  onclick="error_message('GPA must be provided')">&#33</div><br>
+                            <div class="label"><h2>ID           </h2></div><input type="text" placeholder="ID" id="id"><div class="error" id="eid" onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Name" id="name"><div class="error" id="ename" onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>Date of Birth</h2></div><input type="date" placeholder="Date of Birth" id="dob"><div class="error" id="edob"  onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>GPA          </h2></div><input type="number"  placeholder="GPA" step="0.1" min="0.0" max="4.0" id="gpa"><div class="error" id="egpa"  onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>Gender       </h2></div>
                             <input type="radio" name="Gender" id="male"><h4>Male</h4>
-                            <input type="radio" name="Gender" id="female"><h4>Female</h4><div class="error" id="egender" onclick="error_message('Gender must be provided')">&#33</div><br>
-                            <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" id="lv" min="1" max="4"><div class="error" id="elv" onclick="error_message('Level must be provided')">&#33</div><br>
+                            <input type="radio" name="Gender" id="female"><h4>Female</h4><div class="error" id="egender" onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" id="lv" min="1" max="4"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>Status       </h2></div>
                             <input type="radio" name="Status" id="active"><h4>Active</h4>
                             <input type="radio" name="Status" id="inactive"><h4>Inactive</h4><br>
@@ -52,9 +52,9 @@
                                         <li onclick="setdept('IT')">IT</li>
                                     </ul>
                                 </div>
-                            </div><br>
-                            <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email"><div class="error" id="eemail" onclick="error_message('Either E-mail or Phone must be provided')">&#33</div><br>
-                            <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile" ><div class="error" id="emobile" onclick="error_message('Either E-mail or Phone must be provided')">&#33</div>
+                            </div><div class="error" id="edept" onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email"><div class="error" id="eemail" onclick="error_message(this)">&#33</div><br>
+                            <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile" ><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
                     </div>
                     <div class="col-right-50">
                         <input type="button" value="Register" onclick="register()">
