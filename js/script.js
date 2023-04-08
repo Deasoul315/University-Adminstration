@@ -273,6 +273,25 @@ function register(){
     }
 }
 
+function assign() {
+    let error = false;
+    let dept = document.getElementById("dept").innerText;
+    let lv = document.getElementById("lv").placeholder;
+    let is_lv_valid = (lv === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(lv)) || to_float(lv)%1 !== 0 || (to_float(lv) > 4.0 || to_float(lv) < 0.0));
+    if(dept === "Choose Department" || (!is_lv_valid && to_float(lv) < 3)){
+        document.getElementById("spdropdown").style.border = "4px solid #ff3333";
+        document.getElementById("edept").style.display = "inline-block";
+        error = true;
+    } else {
+        document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("edept").style.display = "none";
+    }
+
+    if(!error) {
+        document.getElementById("assign-form").submit();
+    }
+}
+
 function error_message(x){
     var error = ""; 
     if(x.id === "eid"){
@@ -315,8 +334,26 @@ function error_message(x){
 
 
 function specialize() {
-    var form = document.getElementById("sp-form");
-    form.action = "/assignment.html";
-    form.method = "post";
-    form.submit();
+    id = document.getElementById("spid").value;
+    if(id === ""){
+        document.getElementById("spid").style.border = "4px solid #ff3333";
+        document.getElementById("eid").style.display = "inline-block";
+    } else {
+        var form = document.getElementById("sp-form");
+        form.action = "/assignment.html";
+        form.method = "GET";
+        form.submit();
+    }
+}
+
+function assignment_startup() {
+    let params = (new URL(document.location)).searchParams;
+    let id = params.get("stud-id");
+    let name = params.get("stud-name");
+    let lv = params.get("stud-lv");
+    let gpa = params.get("stud-gpa");
+    // document.getElementById("id").placeholder = id; 
+    // document.getElementById("name").placeholder = name; 
+    // document.getElementById("gpa").placeholder = gpa; 
+    // document.getElementById("lv").placeholder = lv;
 }

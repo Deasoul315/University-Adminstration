@@ -11,6 +11,11 @@ html, body{
     background-image:  linear-gradient(90deg, rgba(19,26,106,1) 0%, rgba(32,51,141,1) 25%, rgba(70,114,187,1) 50%, rgba(152,210,226,1) 75%, rgba(227,231,231,1) 100%);
 }
 
+img.home{
+    width: 17px;
+    height: 17px;
+}
+
 .nav-bar ul {
     display: flex;
     padding: 0;
@@ -111,7 +116,7 @@ h1.nav-title {
     border-color: white;
 }
 
-.data-form input[type="text"], .specialize-form input[type="text"], .activate-form input[type="text"]{
+.data-form input[type="text"], .specialize-form input[type="text"], .activate-form input[type="text"], .assignment-form input[type="text"]{
     font-size: 24px;
     border-radius: 8px;
 }
@@ -143,11 +148,11 @@ h1.nav-title {
     /*to the nearest POSITIONED*/
 }
 
-.add-container h1, .edit-container h1 {
+.add-container h1, .edit-container h1, .assignment-container h1{
     color: #e1f5fb;
 }
 
-.add-container h2, .edit-container h2, .activation-container h2 {
+.add-container h2, .edit-container h2, .activation-container h2, .assignment-container h2 {
     color: #e1f5fb;
 }
 
@@ -182,7 +187,7 @@ h1.nav-title {
     transition: background-color 1s;
 }
 
-.col-right-50 input[type="button"]:hover, .edit-container input[type="button"]:hover, .specialization-container input[type="button"]:hover, .activation-container input[type="button"]:hover{
+.col-right-50 input[type="button"]:hover, .edit-container input[type="button"]:hover, .specialization-container input[type="button"]:hover, .activation-container input[type="button"]:hover, .assignment-form input[type="button"]:hover{
     background-color: rgb(8, 81, 8);
     cursor: pointer;
 }
@@ -384,7 +389,15 @@ ul.dropdowndeptlist {
     margin:0px;
 }
 
-.add-container .dropdowndept {
+.spid-wrapper {
+    display: flex;
+}
+
+.spid-wrapper .error {
+    margin: 7px;
+}
+
+.add-container .dropdowndept, .assignment-container .dropdowndept{
     display: inline-block;
 }
 
@@ -414,4 +427,21 @@ ul.dropdowndeptlist {
 .error:hover{
     cursor: pointer;
     background-color: #6e1818;
+}
+
+.assignment-container {
+    margin-top: 10%;
+}
+
+.assignment-form {
+    margin: auto;
+}
+
+.assignment-form input[type="button"]{
+    position: static;
+    width: 250px;
+    height: 35px;
+    font-size: 26px;
+    margin: auto;
+    display: block;
 }
