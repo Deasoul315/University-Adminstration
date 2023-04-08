@@ -313,3 +313,10 @@ function error_message(x){
     window.alert(error);
 }
 
+
+function specialize() {
+    var form = document.getElementById("sp-form");
+    form.action = "/assignment.html";
+    form.method = "post";
+    form.submit();
+}
