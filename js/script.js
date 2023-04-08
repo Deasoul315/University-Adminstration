@@ -60,24 +60,36 @@ function register(){
         document.getElementById("id").style.border = "4px solid #ff3333";
         document.getElementById("eid").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("id").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("eid").style.display = "none";
     }
 
-    if (name === "" || !(/^[A-Za-z]*$/.test(name))) {
+    if (name === "" || !(/^[A-Za-z ]*$/.test(name))) {
         document.getElementById("name").style.border = "4px solid #ff3333";
         document.getElementById("ename").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("name").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("ename").style.display = "none";
     }
 
     if (dob === "" || get_age(dob) < 18) {
         document.getElementById("dob").style.border = "4px solid #ff3333";
         document.getElementById("edob").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("dob").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("edob").style.display = "none";
     }
 
     if (gpa === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(gpa)) || (to_float(gpa) > 4.0 || to_float(gpa) < 0.0)) {
         document.getElementById("gpa").style.border = "4px solid #ff3333";
         document.getElementById("egpa").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("gpa").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("egpa").style.display = "none";
     }
 
     if(email !== ""){
@@ -85,6 +97,9 @@ function register(){
             document.getElementById("email").style.border = "4px solid #ff3333";
             document.getElementById("eemail").style.display = "inline-block";
             error = true;
+        } else {
+            document.getElementById("email").style.border = "4px solid rgb(21, 221, 21)";
+            document.getElementById("eemail").style.display = "none";
         }
     }
     
@@ -93,6 +108,9 @@ function register(){
             document.getElementById("mobile").style.border = "4px solid #ff3333";
             document.getElementById("emobile").style.display = "inline-block";
             error = true;
+        } else {
+            document.getElementById("mobile").style.border = "4px solid rgb(21, 221, 21)";
+            document.getElementById("emobile").style.display = "none";
         }
     }
 
@@ -101,6 +119,10 @@ function register(){
         document.getElementById("female").style.outline = "4px solid #ff3333";
         document.getElementById("egender").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("male").style.outline = "4px solid rgb(21, 221, 21)";
+        document.getElementById("female").style.outline = "4px solid rgb(21, 221, 21)";
+        document.getElementById("egender").style.display = "none";
     }
 
     let is_lv_valid = (lv === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(lv)) || to_float(lv)%1 !== 0 || (to_float(lv) > 4.0 || to_float(lv) < 0.0));
@@ -108,12 +130,18 @@ function register(){
         document.getElementById("lv").style.border = "4px solid #ff3333";
         document.getElementById("elv").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("lv").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("elv").style.display = "none";
     }
     
     if(dept !== "" && !is_lv_valid && to_float(lv) < 3){
         document.getElementById("spdropdown").style.border = "4px solid #ff3333";
         document.getElementById("edept").style.display = "inline-block";
         error = true;
+    } else {
+        document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
+        document.getElementById("edept").style.display = "none";
     }
 
     if(!error){
