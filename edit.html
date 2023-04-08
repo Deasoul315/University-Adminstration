@@ -28,11 +28,11 @@
         <div class="edit-container">
             <div class="col-70">
                 <div class="row">
-                    <form class="search-form">
+                    <form class="search-form" id="srch-form">
                         <div class="search-bar">
                             <input type="text" placeholder="Type Student ID">
                         </div>
-                        <input type="button" value="Search">
+                        <input type="button" value="Search" onclick="search_by_id()">
                     </form>
                 </div>
                 <div class="row">
@@ -55,7 +55,7 @@
                         <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile"><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
                         <div class="delete-button-wrapper">
                             <input type="button" value="Edit" onclick="edit()">
-                            <input type="button" value="Delete"onclick="delete_request()">
+                            <input type="button" value="Delete" onclick="delete_request()">
                         </div>
                     </form>
 

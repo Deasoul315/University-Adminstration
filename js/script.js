@@ -39,6 +39,10 @@ function to_float(x) {
     return y;
 }
 
+function search_by_id() {
+    document.getElementById("srch-form").submit();
+}
+
 function edit() {
     error = false 
     
@@ -150,7 +154,10 @@ function edit() {
 }
 
 function delete_request() {
-    window.confirm("Are you sure that you want to delete this student?");
+    var x = window.confirm("Are you sure that you want to delete this student?");
+    if(x){
+        document.getElementById("edit-form").submit();
+    }
 }
 
 function register(){
@@ -340,7 +347,7 @@ function specialize() {
         document.getElementById("eid").style.display = "inline-block";
     } else {
         var form = document.getElementById("sp-form");
-        form.action = "/assignment.html";
+        form.action = "assignment.html";
         form.method = "GET";
         form.submit();
     }
