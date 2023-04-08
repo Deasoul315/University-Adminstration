@@ -3,6 +3,7 @@
     <head>
         <title>FCI Student Adminstaration Homepage</title>
         <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
         <div class="nav-bar">
@@ -30,25 +31,30 @@
                         <div class="search-bar">
                             <input type="text" placeholder="Type Student ID">
                         </div>
-                        <input type="submit" value="Search">
+                        <input type="button" value="Search">
                     </form>
                 </div>
                 <div class="row">
                 
-                    <form class="data-form">
+                    <form class="data-form" id="edit-form">
                         <h1>Student Information</h1>
-                        <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Name"><br>
-                        <div class="label"><h2>Date of Birth</h2></div><input type="date" placeholder="Date of Birth"><br>
-                        <div class="label"><h2>GPA          </h2></div><input type="number"  placeholder="GPA" step="0.1" min="0.0" max="4.0"><br>
+                        <div class="label"><h2>ID         </h2></div><input type="text" placeholder="ID" id="id"><div class="error" id="eid" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Name" id="name"><div class="error" id="ename" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Date of Birth</h2></div><input type="date" placeholder="Date of Birth" id="dob"><div class="error" id="edob" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>GPA          </h2></div><input type="number"  placeholder="GPA" step="0.1" min="0.0" max="4.0" id="gpa"><div class="error" id="egpa" onclick="error_message(this)">&#33</div><br>
                         <div class="label"><h2>Gender       </h2></div>
-                        <input type="radio" name="Gender"><h4>Male</h4>
-                        <input type="radio" name="Gender"><h4>Female</h4><br>
-                        <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" min="1" max="4"><br>
-                        <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail"><br>
-                        <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number">
+                        <input type="radio" name="Gender" id="male"><h4>Male</h4>
+                        <input type="radio" name="Gender" id="female"><h4>Female</h4><div class="error" id="egender" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Status       </h2></div>
+                        <input type="radio" name="Status" id="active"><h4>Active</h4>
+                        <input type="radio" name="Status" id="inactive"><h4>Inactive</h4><div class="error" id="estatus" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" min="1" max="4" id="lv"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Department        </h2></div><input type="text" placeholder="Blocked through this tab" readonly="readonly"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email"><div class="error" id="eemail" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile"><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
                         <div class="delete-button-wrapper">
-                            <input type="submit" value="Edit">
-                            <input type="submit" value="Delete">
+                            <input type="button" value="Edit" onclick="edit()">
+                            <input type="button" value="Delete"onclick="delete_request()">
                         </div>
                     </form>
 

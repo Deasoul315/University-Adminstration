@@ -39,19 +39,17 @@
                             <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" id="lv" min="1" max="4"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>Status       </h2></div>
                             <input type="radio" name="Status" id="active"><h4>Active</h4>
-                            <input type="radio" name="Status" id="inactive"><h4>Inactive</h4><br>
+                            <input type="radio" name="Status" id="inactive"><h4>Inactive</h4><div class="error" id="estatus" onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>Department   </h2></div>
                             <div class="dropdowndept" onmouseover="openlist()" onmouseleave="collapselist()" id="spdropdown">
                                 <h3 id="dept"></h3>
-                                <div class="dropdowndeptlist" onclick="selectdept()">
-                                    <ul>
-                                        <li onclick="setdept('CS')">CS</li>
-                                        <li onclick="setdept('IS')">IS</li>
-                                        <li onclick="setdept('AI')">AI</li>
-                                        <li onclick="setdept('DS')">DS</li>
-                                        <li onclick="setdept('IT')">IT</li>
-                                    </ul>
-                                </div>
+                                <ul class="dropdowndeptlist" onclick="selectdept()">
+                                    <li onclick="setdept('CS')">CS</li>
+                                    <li onclick="setdept('IS')">IS</li>
+                                    <li onclick="setdept('AI')">AI</li>
+                                    <li onclick="setdept('DS')">DS</li>
+                                    <li onclick="setdept('IT')">IT</li>
+                                </ul>
                             </div><div class="error" id="edept" onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email"><div class="error" id="eemail" onclick="error_message(this)">&#33</div><br>
                             <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile" ><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
