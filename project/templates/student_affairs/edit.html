@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FCI Student Adminstaration Homepage</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}?{% now 'U' %}">
+        <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class="nav-bar-left">
+                <ul>
+                    <li><a href="index.html"><img src="{% static 'assets/home.png' %}" class="home"></a></li>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="add.html">Add</a></li>
+                    <li><a href="edit.html">Edit</a></li>
+                    <li><a href="specialize.html">Specialize</a></li>
+                    <li><a href="activation.html">Activation</a></li>
+                </ul>
+            </div>
+            <div class="nav-bar-right">
+                <ul>
+                    <li><a href="/index.html">Sign In</a></li>
+                    <li><a href="/index.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="edit-container">
+            <div class="col-70">
+                <div class="row">
+                    <form class="search-form" id="srch-form">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Type Student ID">
+                        </div>
+                        <input type="button" value="Search" onclick="search_by_id()">
+                    </form>
+                </div>
+                <div class="row">
+                
+                    <form class="data-form" id="edit-form" method="post">
+                        {% csrf_token %}
+                        <h1>Student Information</h1>
+                        <div class="label"><h2>ID         </h2></div><input type="text" placeholder="ID" id="id"><div class="error" id="eid" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Name" id="name"><div class="error" id="ename" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Date of Birth</h2></div><input type="date" placeholder="Date of Birth" id="dob"><div class="error" id="edob" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>GPA          </h2></div><input type="number"  placeholder="GPA" step="0.1" min="0.0" max="4.0" id="gpa"><div class="error" id="egpa" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Gender       </h2></div>
+                        <input type="radio" name="gender" id="male"><h4>Male</h4>
+                        <input type="radio" name="gender" id="female"><h4>Female</h4><div class="error" id="egender" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Status       </h2></div>
+                        <input type="radio" name="status" id="active"><h4>Active</h4>
+                        <input type="radio" name="status" id="inactive"><h4>Inactive</h4><div class="error" id="estatus" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Level        </h2></div><input type="number" placeholder="Level" min="1" max="4" id="lv"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Department        </h2></div><input type="text" placeholder="Blocked through this tab" readonly="readonly"><div class="error" id="elv" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email"><div class="error" id="eemail" onclick="error_message(this)">&#33</div><br>
+                        <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile"><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
+                        <div class="delete-button-wrapper">
+                            <input type="submit" value="Edit" onclick="edit()" name="edit">
+                            <input type="submit" value="Delete" onclick="delete_request()" name="delete">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footsy">
+            <div class="row">
+                <div class="col-25">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
