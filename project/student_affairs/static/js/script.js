@@ -273,6 +273,7 @@ function register(){
     } else {
         document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
         document.getElementById("edept").style.display = "none";
+        document.getElementById("deptinput").value = dept;
     }
 
     if(!error){

@@ -445,3 +445,7 @@ ul.dropdowndeptlist {
     margin: auto;
     display: block;
 }
+
+form #deptinput {
+    display: none;
+}

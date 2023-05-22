@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="activation-container">
+    <div class="col-70">
+        <div class="row">
+            <form class="search-form">
+                <div class="search-bar">
+                    <input type="text" placeholder="Type Student Name">
+                </div>
+                <input type="button" value="Search">
+            </form>
+        </div>
+        <div class="row">
+            <div class="rendering-table">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr onclick="setacid('20200543')">
+                        <td>20200543</td>
+                        <td>Mostafa Mohammad Abd El-moaty</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr onclick="setacid('20200161')">
+                        <td>20200151</td>
+                        <td>Some Name</td>
+                        <td>Active</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <form class="activate-form">
+            <div class="row acrow3">
+                <input type="text" placeholder="ID" id="acid">
+                <input type="radio" name="Status">
+                <h4>Active</h4>
+                <input type="radio" name="Status">
+                <h4>Inactive</h4>
+                <input type="button" value="Apply">  
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+        
