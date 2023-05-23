@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .models import Student
 from . import validator
 from . import utilities
 import datetime
+import json
 
 def student_affairs(request):
     return render(request, "student_affairs.html")
@@ -15,28 +16,30 @@ def index(request):
 ### ADD
 
 def add(request):
-    if request.method == 'POST':
-        id = request.POST.get('id')
-        name = request.POST.get('name')
-        dob = request.POST.get('dob')
-        gpa = request.POST.get('gpa')
-        gender = request.POST.get('gender')
-        level = request.POST.get('level')
-        status = request.POST.get('status')
-        dept = request.POST.get('dept')
-        email = request.POST.get('email')
-        mobile = request.POST.get('mobile')
-        is_valid = validator.is_id(id)  and validator.is_name(name) and validator.is_dob(dob) and \
-                    validator.is_gpa(gpa) and validator.is_gender(gender) and validator.is_status(status) and \
-                    ((validator.is_dept(dept) and int(level) > 2) or (dept == '' and int(level) < 3))  and \
-                    validator.is_level(level)  and (validator.is_email(email) or validator.is_mobile(mobile) )
-       
-        email = email if validator.is_email(email) else ''
-        mobile = mobile if validator.is_mobile(mobile) else ''
-        
-        if is_valid:
-            student = Student(id=int(id), name=name, dob=utilities.get_datetime(dob), gpa=float(gpa), gender=utilities.get_gender(gender), level=int(level), status=utilities.get_status(status), dept=dept, email=email, mobile=mobile)
-            student.save()
+    if request.method != 'POST':
+        return render(request, "add.html")
+
+    id = request.POST.get('id')
+    name = request.POST.get('name')
+    dob = request.POST.get('dob')
+    gpa = request.POST.get('gpa')
+    gender = request.POST.get('gender')
+    level = request.POST.get('level')
+    status = request.POST.get('status')
+    dept = request.POST.get('dept')
+    email = request.POST.get('email')
+    mobile = request.POST.get('mobile')
+    is_valid = validator.is_id(id)  and validator.is_name(name) and validator.is_dob(dob) and \
+                validator.is_gpa(gpa) and validator.is_gender(gender) and validator.is_status(status) and \
+                ((validator.is_dept(dept) and int(level) > 2) or (dept == '' and int(level) < 3))  and \
+                validator.is_level(level)  and (validator.is_email(email) or validator.is_mobile(mobile) )
+    
+    email = email if validator.is_email(email) else ''
+    mobile = mobile if validator.is_mobile(mobile) else ''
+    
+    if is_valid:
+        student = Student(id=int(id), name=name, dob=utilities.get_datetime(dob), gpa=float(gpa), gender=utilities.get_gender(gender), level=int(level), status=utilities.get_status(status), dept=dept, email=email, mobile=mobile)
+        student.save()
         
         #if not(Student.objects.filter(id=id)):
             #verifications
@@ -83,9 +86,12 @@ def edit(request):
                     student.save()
             
         elif 'delete' in request.POST:
-            query = Student.objects.filter(id=id)
-            if query:
-                Student.objects.filter(id=id).delete()
+            id = request.POST.get('id')
+            
+            if validator.is_id(id):
+                student = Student.objects.filter(id=int(id)).first()
+                if student != None:
+                    Student.objects.filter(id=id).delete()
     
     if request.method == 'GET':
         if 'search' in request.GET:
@@ -104,15 +110,13 @@ def specialize(request):
         is_valid = validator.is_id(id)
         if is_valid:
             student = Student.objects.filter(id=int(id)).first()
-            if student != None and student.level > 2:
+            if student != None and student.level == 3:
                 return HttpResponseRedirect(reverse("assignment", kwargs={'id':student.id}))
-        
-    if request.method == 'GET':
-        if 'search' in request.GET:
-            name = request.GET.get('name')
-            if validator.is_name(name):
-                students = Student.objects.filter(name=name)
-                return render(request, "edit.html", {'students':students})
+
+    if request.method == 'AJAX':
+        js = json.loads(request.body)
+        students = Student.objects.filter(name__icontains=js['series']).values()
+        return JsonResponse(list(students), safe=False)
     
     students = Student.objects.all()
     return render(request, "specialize.html", {'students':students})
@@ -152,12 +156,10 @@ def activate(request):
                 student.status = utilities.get_status(status)
                 student.save()
 
-    if request.method == 'GET':
-        if 'search' in request.GET:
-            name = request.GET.get('name')
-            if validator.is_name(name):
-                students = Student.objects.filter(name=name)
-                return render(request, "edit.html", {'students':students})
+    if request.method == 'AJAX':
+        js = json.loads(request.body)
+        students = Student.objects.filter(name__icontains=js['series']).values()
+        return JsonResponse(list(students), safe=False)
     
     students = Student.objects.all()
     return render(request, "activation.html", {'students':students})

@@ -12,7 +12,7 @@
         </div>
         <div class="row">
         
-            <form class="data-form" id="edit-form" method="post" onsubmit="return edit()">
+            <form class="data-form" id="edit-form" method="post">
                 {% csrf_token %}
                 <h1>Student Information</h1>
                 <div class="label"><h2>ID         </h2></div><input type="text" placeholder="ID" id="id" value="{{ stud.id|default:'' }}" name="id"><div class="error" id="eid" onclick="error_message(this)">&#33</div><br>
@@ -40,8 +40,8 @@
                 <div class="label"><h2>E-mail       </h2></div><input type="email" placeholder="E-mail" id="email" value="{{ stud.email|default:'' }}" name="email"><div class="error" id="eemail" onclick="error_message(this)" >&#33</div><br>
                 <div class="label"><h2>Mobile Number</h2></div><input type="text" placeholder="Mobile Number" id="mobile" value="{{ stud.mobile|default:'' }}" name="mobile"><div class="error" id="emobile" onclick="error_message(this)">&#33</div>
                 <div class="delete-button-wrapper">
-                    <input type="submit" value="Edit" name="edit" >
-                    <input type="submit" value="Delete" name="delete">
+                    <input type="submit" value="Edit" name="edit" id="edit-button">
+                    <input type="submit" value="Delete" name="delete" id="delete-button">
                 </div>
             </form>
 

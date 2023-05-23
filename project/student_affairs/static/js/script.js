@@ -44,10 +44,8 @@ function search_by_id() {
     document.getElementById("srch-form").submit();
 }
 
-function edit(e) {
-    //let form = document.getElementById("edit-form").elements["edit"];
-    return false;
-    /*
+function edit() {
+    
     let error = false 
     
     let id = document.getElementById("id").value;
@@ -153,22 +151,20 @@ function edit(e) {
     }
 
     if(!error){
-        document.getElementById("edit-form").submit();
+        return true;
     }
-    */
+
+    return false;
 }
 
 function delete_request() {
     var x = window.confirm("Are you sure that you want to delete this student?");
     if(x){
-        document.getElementById("edit-form").submit();
+        return true;
     }
+    return false;
 }
 
-document.getElementById("add-form").addEventListener("click", function(event){
-    event.preventDefault()
-
-  });
 function register(){
     error = false
 
@@ -275,14 +271,14 @@ function register(){
         document.getElementById("elv").style.display = "none";
     }
     
-    if(dept !== "Choose Department" && !is_lv_valid && to_float(lv) < 3){
+    if(dept !== "General" && !is_lv_valid && to_float(lv) < 3){
         document.getElementById("spdropdown").style.border = "4px solid #ff3333";
         document.getElementById("edept").style.display = "inline-block";
         error = true;
     } else {
         document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
         document.getElementById("edept").style.display = "none";
-        if (dept == "Choose Department")
+        if (dept == "General")
             dept = ""
         document.getElementsByClassName("hiddeninput")[0].value = dept;
     }
@@ -299,13 +295,16 @@ function assign() {
     let dept = document.getElementById("dept").innerText;
     let lv = document.getElementById("lv").placeholder;
     let is_lv_valid = (lv === "" || !(/[+-]?([0-9]*[.])?[0-9]/.test(lv)) || to_float(lv)%1 !== 0 || (to_float(lv) > 4.0 || to_float(lv) < 0.0));
-    if(dept === "Choose Department" || (!is_lv_valid && to_float(lv) < 3)){
+    if(dept === "General" || (!is_lv_valid && to_float(lv) < 3)){
         document.getElementById("spdropdown").style.border = "4px solid #ff3333";
         document.getElementById("edept").style.display = "inline-block";
         error = true;
     } else {
         document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
         document.getElementById("edept").style.display = "none";
+        if (dept == "General")
+            dept = ""
+        document.getElementsByClassName("hiddeninput")[1].value = dept;
     }
 
     if(!error) {
@@ -359,10 +358,120 @@ function specialize() {
     if(id === ""){
         document.getElementById("spid").style.border = "4px solid #ff3333";
         document.getElementById("eid").style.display = "inline-block";
-    } else {
-        var form = document.getElementById("sp-form");
-        form.action = "assignment.html";
-        form.method = "GET";
-        form.submit();
+        return false;
     }
+    return true;  
 }
+
+function activate() {
+    id = document.getElementById("acid").value;
+    if(id === ""){
+        document.getElementById("acid").style.border = "4px solid #ff3333";
+        document.getElementById("eid").style.display = "inline-block";
+        return false;
+    }
+
+    return true;
+}
+
+function update_render_table_specialization(students) {
+    newTable = "<table> <tr> <th>ID</th><th>Name</th> </tr> ";
+    for (let i = 0; i < students.length; i++) {
+        stud_id = students[i].id;
+        stud_name = students[i].name;
+        newTable += "<tr onclick=\"setspid('{{s.id}}')\"> <td>" + stud_id + "</td> <td>" + stud_name + "</td> </tr>";
+    }
+    newTable += "</table>"
+    document.getElementsByClassName("rendering-table")[0].innerHTML = newTable;
+}
+
+function update_render_table_activation(students) {
+    newTable = "<table> <tr> <th>ID</th><th>Name</th><th>Status</th> </tr> ";
+    for (let i = 0; i < students.length; i++) {
+        let stud_id = students[i].id;
+        let stud_name = students[i].name;
+        let stud_status = "Inactive";
+        if(students[i].status == true) {
+            stud_status = "Active"
+        }
+        newTable += "<tr onclick=\"setspid('{{s.id}}')\"> <td>" + stud_id + "</td> <td>" + stud_name + "</td> <td>" + stud_status + "</td> </tr>" ;
+    }
+    newTable += "</table>"
+    document.getElementsByClassName("rendering-table")[0].innerHTML = newTable;
+}
+
+const send_search = (series, table) => {
+    const xhttp = new XMLHttpRequest();
+    var currentLink = window.location.origin;
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var students = JSON.parse(xhttp.responseText);
+            console.log(students);
+            if (table == 'specialize'){
+                update_render_table_specialization(students);
+            } else if (table == 'activate') {
+                update_render_table_activation(students);
+            }
+        }
+    }
+
+    xhttp.open("AJAX", currentLink + "/student_affairs/specialize/");
+    if (document.cookie.indexOf('csrftoken') > -1) {
+        var value = document.cookie.split('csrftoken')[1].split('=')[1];
+        xhttp.setRequestHeader('X-CSRFToken', value);
+    }
+
+    xhttp.send(JSON.stringify({
+        'series': series,
+    }));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        document.querySelector('#addform').onsubmit = () => {
+            return register();
+        }
+    } catch {}
+    try {
+        var ebutton = false, dbutton = false;
+        document.querySelector("#edit-button").onclick = ()=>{
+            ebutton = true;
+        };
+        document.querySelector("#delete-button").onclick = ()=>{
+            dbutton = true;
+        };
+    
+        let form = document.getElementById("edit-form").elements["edit"];
+        document.querySelector('#edit-form').onsubmit = () => {
+            if (ebutton) {
+                return edit();
+            }
+            return delete_request();
+        }
+    } catch {}
+
+    try {
+        document.querySelector('#sp-form').onsubmit = () => {
+            return specialize();
+        }
+    } catch {}
+
+    try {
+        document.querySelector('#ac-form').onsubmit = () => {
+            return activate();
+        }
+    } catch {}
+
+    try {
+        document.querySelector("#search-field-specialization").addEventListener('keyup', e => {
+            send_search(e.target.value, "specialize");
+        });
+    } catch {}
+    try {
+        document.querySelector("#search-field-activation").addEventListener('keyup', e => {
+            console.log("activate");
+            send_search(e.target.value, "activate");
+        });
+    } catch {}
+})

@@ -5,9 +5,8 @@
         <div class="row">
             <form class="search-form" method="get">
                 <div class="search-bar">
-                    <input type="text" placeholder="Type Student Name" name="name">
+                    <input type="text" placeholder="Type Student Name" name="name" id="search-field-activation">
                 </div>
-                <input type="submit" value="Search" name="search">
             </form>
         </div>
         <div class="row">
@@ -32,11 +31,11 @@
                 </table>
             </div>
         </div>
-        <form class="activate-form" method="post">
+        <form class="activate-form" method="post" id="ac-form">
             {% csrf_token %}
             <div class="row acrow3">
-                <input type="text" placeholder="ID" id="acid" name="id">
-                <input type="radio" name="status" value="on">
+                <input type="text" placeholder="ID" id="acid" name="id"><div class="error" id="eid" onclick="error_message(this)">&#33</div>
+                <input type="radio" name="status" value="on" checked>
                 <h4>Active</h4>
                 <input type="radio" name="status" value="off">
                 <h4>Inactive</h4>
