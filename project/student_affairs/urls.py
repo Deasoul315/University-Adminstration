@@ -8,5 +8,7 @@ urlpatterns = [
     path("student_affairs/add/", views.add, name="add"),
     path("student_affairs/edit/", views.edit, name="edit"),
     path("student_affairs/specialize/", views.specialize, name="specialize"),
-    path("student_affairs/activation/", views.activate, name="activate")
+    path("student_affairs/specialize/assignment/<str:id>", views.assignment, name="assignment"),
+    path("student_affairs/activation/", views.activate, name="activate"),
+    path("about", views.about, name="about")
 ]

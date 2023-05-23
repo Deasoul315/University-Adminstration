@@ -3,11 +3,11 @@
 <div class="specialization-container">
     <div class="col-70">
         <div class="row">
-            <form class="search-form">
+            <form class="search-form" method="GET">
                 <div class="search-bar">
-                    <input type="text" placeholder="Type Student Name">
+                    <input type="text" placeholder="Type Student Name" name="name">
                 </div>
-                <input type="button" value="Search">
+                <input type="submit" value="Search" name="search">
             </form>
         </div>
         <div class="row">
@@ -17,23 +17,22 @@
                         <th>ID</th>
                         <th>Name</th>
                     </tr>
-                    <tr onclick="setspid('20200543')">
-                        <td>20200543</td>
-                        <td>Mostafa Mohammad Abd El-moaty</td>
-                    </tr>
-                    <tr onclick="setspid('20200161')">
-                        <td>20200151</td>
-                        <td>Some Name</td>
-                    </tr>
+                    {% for s in students %}
+                        <tr onclick="setspid('{{s.id}}')">
+                            <td>{{s.id}}</td>
+                            <td>{{s.name}}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
-        <form class="specialize-form" id="sp-form">
+        <form class="specialize-form" id="sp-form" method="POST">
+            {% csrf_token %}
             <div class="row sprow3">
                 <div class="spid-wrapper">
                     <input type="text" placeholder="ID" id="spid" name="stud-id"><div class="error" id="eid" onclick="error_message(this)">&#33</div>
                 </div>
-                <input type="button" value="Specialize" onclick="specialize()">
+                <input type="submit" value="Specialize" onclick="specialize()" name="specialize">
             </div>
         </form>
     </div>

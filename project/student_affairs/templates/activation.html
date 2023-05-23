@@ -3,11 +3,11 @@
 <div class="activation-container">
     <div class="col-70">
         <div class="row">
-            <form class="search-form">
+            <form class="search-form" method="get">
                 <div class="search-bar">
-                    <input type="text" placeholder="Type Student Name">
+                    <input type="text" placeholder="Type Student Name" name="name">
                 </div>
-                <input type="button" value="Search">
+                <input type="submit" value="Search" name="search">
             </form>
         </div>
         <div class="row">
@@ -18,27 +18,29 @@
                         <th>Name</th>
                         <th>Status</th>
                     </tr>
-                    <tr onclick="setacid('20200543')">
-                        <td>20200543</td>
-                        <td>Mostafa Mohammad Abd El-moaty</td>
-                        <td>Active</td>
-                    </tr>
-                    <tr onclick="setacid('20200161')">
-                        <td>20200151</td>
-                        <td>Some Name</td>
-                        <td>Active</td>
-                    </tr>
+                    {% for s in students %}
+                        <tr onclick="setacid('{{s.id}}')">
+                            <td>{{s.id}}</td>
+                            <td>{{s.name}}</td>
+                            {% if s.status == True %}
+                                <td>Active</td>
+                            {% else %}
+                                <td>Inactive</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
-        <form class="activate-form">
+        <form class="activate-form" method="post">
+            {% csrf_token %}
             <div class="row acrow3">
-                <input type="text" placeholder="ID" id="acid">
-                <input type="radio" name="Status">
+                <input type="text" placeholder="ID" id="acid" name="id">
+                <input type="radio" name="status" value="on">
                 <h4>Active</h4>
-                <input type="radio" name="Status">
+                <input type="radio" name="status" value="off">
                 <h4>Inactive</h4>
-                <input type="button" value="Apply">  
+                <input type="submit" value="Apply">  
             </div>
         </form>
     </div>

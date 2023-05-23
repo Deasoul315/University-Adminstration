@@ -15,6 +15,7 @@ function collapselist(){
 
 function setdept(x){
     document.getElementById("spdropdown").getElementsByTagName("h3")[0].innerText = x;
+    document.getElementsByClassName("hiddeninput")[1].value = x;
 }
 
 function setspid(x){
@@ -43,8 +44,11 @@ function search_by_id() {
     document.getElementById("srch-form").submit();
 }
 
-function edit() {
-    error = false 
+function edit(e) {
+    //let form = document.getElementById("edit-form").elements["edit"];
+    return false;
+    /*
+    let error = false 
     
     let id = document.getElementById("id").value;
     let name = document.getElementById("name").value;
@@ -151,6 +155,7 @@ function edit() {
     if(!error){
         document.getElementById("edit-form").submit();
     }
+    */
 }
 
 function delete_request() {
@@ -160,6 +165,10 @@ function delete_request() {
     }
 }
 
+document.getElementById("add-form").addEventListener("click", function(event){
+    event.preventDefault()
+
+  });
 function register(){
     error = false
 
@@ -273,12 +282,16 @@ function register(){
     } else {
         document.getElementById("spdropdown").style.border = "4px solid rgb(21, 221, 21)";
         document.getElementById("edept").style.display = "none";
-        document.getElementById("deptinput").value = dept;
+        if (dept == "Choose Department")
+            dept = ""
+        document.getElementsByClassName("hiddeninput")[0].value = dept;
     }
 
     if(!error){
-        document.getElementById("addform").submit();
+        return true;
     }
+
+    return false;
 }
 
 function assign() {
@@ -352,16 +365,4 @@ function specialize() {
         form.method = "GET";
         form.submit();
     }
-}
-
-function assignment_startup() {
-    let params = (new URL(document.location)).searchParams;
-    let id = params.get("stud-id");
-    let name = params.get("stud-name");
-    let lv = params.get("stud-lv");
-    let gpa = params.get("stud-gpa");
-    // document.getElementById("id").placeholder = id; 
-    // document.getElementById("name").placeholder = name; 
-    // document.getElementById("gpa").placeholder = gpa; 
-    // document.getElementById("lv").placeholder = lv;
 }

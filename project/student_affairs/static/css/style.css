@@ -171,7 +171,7 @@ h1.nav-title {
     display: inline-block;
 }
 
-.col-right-50 input[type="button"], .col-70 input[type="submit"]{
+.col-right-50 input[type="submit"], .col-70 input[type="submit"]{
     width: 350px;
     height: 50px;
     background-color: rgb(21, 221, 21);
@@ -187,7 +187,7 @@ h1.nav-title {
     transition: background-color 1s;
 }
 
-.col-right-50 input[type="button"]:hover, .edit-container input[type="button"]:hover, .specialization-container input[type="button"]:hover, .activation-container input[type="button"]:hover, .assignment-form input[type="button"]:hover{
+.col-right-50 input[type="submit"]:hover, .edit-container input[type="submit"]:hover, .specialization-container input[type="submit"]:hover, .activation-container input[type="submit"]:hover, .assignment-form input[type="submit"]:hover{
     background-color: rgb(8, 81, 8);
     cursor: pointer;
 }
@@ -243,7 +243,7 @@ footer {
     justify-content: space-evenly;
 }
 
-.edit-container .search-form input[type="button"], .specialization-container input[type="button"], .activation-container input[type="button"] {
+.edit-container .search-form input[type="submit"], .specialization-container input[type="submit"], .activation-container input[type="submit"] {
     height: 30px;
     width: 100px;
     margin: 0px;
@@ -261,12 +261,12 @@ footer {
     display: block;
 }
 
-.edit-container input[type="button"], .specialization-container input[type="button"], .activation-container input[type="button"]{
+.edit-container input[type="submit"], .specialization-container input[type="submit"], .activation-container input[type="submit"]{
     position: relative;
     width: 200px;
 }
 
-.edit-container .data-form input[type="button"]{
+.edit-container .data-form input[type="submit"]{
     margin: 0px 10px 0px 10px;
 }
 
@@ -275,7 +275,7 @@ footer {
     margin: auto;
 }
 
-.delete-button-wrapper {
+.delete-submit-wrapper {
     display: flex;
     justify-content: space-between;
 }
@@ -437,7 +437,7 @@ ul.dropdowndeptlist {
     margin: auto;
 }
 
-.assignment-form input[type="button"]{
+.assignment-form input[type="submit"]{
     position: static;
     width: 250px;
     height: 35px;
@@ -446,6 +446,6 @@ ul.dropdowndeptlist {
     display: block;
 }
 
-form #deptinput {
+form .hiddeninput {
     display: none;
 }

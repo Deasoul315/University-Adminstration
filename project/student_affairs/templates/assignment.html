@@ -1,44 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block navbar %}
-<div class="nav-bar">
-    <div class="nav-bar-left">
-        <ul>
-            <li><a href="index.html"><img src="assets/home.png" class="home"></a></li>
-            <li><a href="specialize.html">Specialize</a></li>
-        </ul>
-    </div>
-    <div class="nav-bar-right">
-        <ul>
-            <li><a href="/index.html">Sign In</a></li>
-            <li><a href="/index.html">Sign Up</a></li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-{% block content %}
-<div class="assignment-container">
-    <div class="col-70">
-        <div class="row">
-            <form class="assignment-form" id="assign-form">
-                <h1>Student Information</h1>
-                <div class="label"><h2>ID         </h2></div><input type="text" placeholder="20200543" id="id" readonly="readonly"><br>
-                <div class="label"><h2>Name         </h2></div><input type="text" placeholder="Mostafa Mohammad" id="name" readonly="readonly"><br>
-                <div class="label"><h2>GPA          </h2></div><input type="text"  placeholder="3.0" id="gpa" readonly="readonly"><br>
-                <div class="label"><h2>Level        </h2></div><input type="text" placeholder="2" id="lv" readonly="readonly"><br>
-                <div class="label"><h2>Department        </h2></div>
-                <div class="dropdowndept" onmouseover="openlist()" onmouseleave="collapselist()" id="spdropdown">
-                <h3 id="dept">Choose Department</h3>
-                <ul class="dropdowndeptlist" onclick="selectdept()">
-                    <li onclick="setdept('CS')">CS</li>
-                    <li onclick="setdept('IS')">IS</li>
-                    <li onclick="setdept('AI')">AI</li>
-                    <li onclick="setdept('DS')">DS</li>
-                    <li onclick="setdept('IT')">IT</li>
-                </ul>
-                </div><div class="error" id="edept" onclick="error_message(this)">&#33</div><br>
-                <input type="button" value="Assign" onclick="assign()">
-            </form>
+    <div class="nav-bar">
+        <div class="nav-bar-left">
+            <ul>
+                <li><a href="{% url 'index' %}"><img src="{% static 'assets/home.png' %}" class="home"></a></li>
+                <li><a href="{% url 'specialize' %}">Specialize</a></li>
+            </ul>
+        </div>
+        <div class="nav-bar-right">
+            <ul>
+                <li><a href="/index.html">Sign In</a></li>
+                <li><a href="/index.html">Sign Up</a></li>
+            </ul>
         </div>
     </div>
-</div>
+{% endblock %}
+{% block content %}
+    <div class="assignment-container">
+        <div class="col-70">
+            <div class="row">
+                <form class="assignment-form" id="assign-form" method="post">
+                    {% csrf_token %}
+                    <h1>Student Information</h1>
+                    <div class="label"><h2>ID         </h2></div><input type="text" placeholder="{{ student.id }}" id="id" readonly="readonly"><br>
+                    <input type="text" name="id" class="hiddeninput" value="{{ student.id }}">
+                    <div class="label"><h2>Name         </h2></div><input type="text" placeholder="{{ student.name }}" id="name" readonly="readonly"><br>
+                    <div class="label"><h2>GPA          </h2></div><input type="text"  placeholder="{{ student.gpa }}" id="gpa" readonly="readonly"><br>
+                    <div class="label"><h2>Level        </h2></div><input type="text" placeholder="{{ student.level }}" id="lv" readonly="readonly"><br>
+                    <div class="label"><h2>Department        </h2></div>
+                    <div class="dropdowndept" onmouseover="openlist()" onmouseleave="collapselist()" id="spdropdown">
+                    <h3 id="dept">Choose Department</h3>
+                    <input type="text" name="dept" class="hiddeninput">
+                    <ul class="dropdowndeptlist" onclick="selectdept()">
+                        <li onclick="setdept('CS')">CS</li>
+                        <li onclick="setdept('IS')">IS</li>
+                        <li onclick="setdept('AI')">AI</li>
+                        <li onclick="setdept('DS')">DS</li>
+                        <li onclick="setdept('IT')">IT</li>
+                    </ul>
+                    </div><div class="error" id="edept" onclick="error_message(this)">&#33</div><br>
+                    <input type="submit" value="Assign" onclick="assign()">
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
