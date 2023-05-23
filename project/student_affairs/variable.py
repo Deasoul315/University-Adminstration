@@ -1,0 +1,1 @@
+departments = ['IS', 'CS', 'DS', 'AI', 'IT']

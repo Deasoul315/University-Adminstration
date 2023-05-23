@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FCI Student Adminstaration Homepage</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}?{% now 'U' %}">
+        <script type="text/javascript" src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+    </head>
+    <body>
+        {% block navbar %}
+        <div class="nav-bar">
+            <div class="nav-bar-left">
+                <ul>
+                    <li><a href="{% url 'index' %}"><img src="{% static 'assets/home.png' %}" class="home"></a></li>
+                    <li><a href="{% url 'student_affairs' %}">Home</a></li>
+                    <li><a href="{% url 'add' %}">Add</a></li>
+                    <li><a href="{% url 'edit' %}">Edit</a></li>
+                    <li><a href="{% url 'specialize' %}">Specialize</a></li>
+                    <li><a href="{% url 'activate' %}">Activation</a></li>
+                </ul>
+            </div>
+            <div class="nav-bar-right">
+                <ul>
+                    <li><a href="/index.html">Sign In</a></li>
+                    <li><a href="/index.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block content%}
+        {% endblock %}
+
+        <footer class="footsy">
+            <div class="row">
+                <div class="col-25">
+                    <ul>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-25">
+                    <ul>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
